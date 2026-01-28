@@ -8,17 +8,20 @@
 <style>
 :root{
   --primary:#1e88e5;
-  --accent:#ffcc00;
+  --secondary:#1565c0;
   --bg:#0b1c2d;
   --card:#12283f;
   --text:#ffffff;
   --muted:#9fb3c8;
+  --accent:#ffcc00;
+  --feature-card:#1e3a5a;
 }
 body.light{
   --bg:#eef5ff;
   --card:#ffffff;
   --text:#0b1c2d;
   --muted:#5f6f82;
+  --feature-card:#bbdefb;
 }
 *{box-sizing:border-box}
 body{
@@ -26,238 +29,265 @@ body{
   font-family:Segoe UI,Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
-  transition:.4s;
+  scroll-behavior:smooth;
 }
-a{text-decoration:none;color:inherit}
-button{border:none;cursor:pointer;font-family:inherit}
+a{text-decoration:none}
+button{cursor:pointer;border:none}
 
-/* ===== LANDING ===== */
-.landing{
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-}
-.landing::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(120deg,#1e88e5,#0b1c2d);
-  transform:translateY(calc(var(--scroll)*0.3px));
-}
-.landing-content{z-index:2;padding:20px}
-.landing h1{font-size:clamp(32px,6vw,56px)}
-.landing p{color:var(--muted);margin-bottom:25px}
-.btn-group{display:flex;gap:15px;justify-content:center;flex-wrap:wrap}
-
-/* ===== BUTTON ===== */
-.btn{
-  padding:12px 22px;
-  border-radius:12px;
-  font-weight:700;
-  background:var(--primary);
-  color:#fff;
-  transition:.25s;
-}
-.btn:hover{transform:scale(1.05);background:var(--accent);color:#000}
-
-/* ===== HEADER ===== */
+/* HEADER */
 header{
-  position:sticky;top:0;z-index:99;
-  backdrop-filter:blur(10px);
-  background:rgba(0,0,0,.4);
+  background:linear-gradient(90deg,#1e88e5,#1565c0);
+  position:sticky;
+  top:0;
+  z-index:100;
+  border-bottom:3px solid var(--accent);
 }
 nav{
-  max-width:1100px;
-  margin:auto;
-  padding:12px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  padding:15px;
 }
 .menu{display:flex;gap:15px;flex-wrap:wrap}
+nav a,nav button{color:white;background:none}
 
-/* ===== SECTION ===== */
-.container{max-width:1100px;margin:auto;padding:20px}
-.section{
+/* LANDING */
+.landing{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  background:linear-gradient(135deg,#1e88e5,#0b1c2d);
+}
+.landing h1{font-size:42px}
+.landing p{color:#ddd}
+.landing .btn{margin:8px}
+
+/* HERO */
+.hero{
+  text-align:center;
+  padding:60px 15px;
+  background:linear-gradient(120deg,#1e88e5,#bbdefb);
+  border-radius:0 0 30px 30px;
+}
+.hero h1{margin:0}
+
+/* CONTENT */
+.container{max-width:1000px;margin:auto;padding:20px}
+.card{
   background:var(--card);
-  border-radius:16px;
-  padding:22px;
-  margin-bottom:25px;
+  padding:18px;
+  border-radius:12px;
+  margin-bottom:20px;
+  box-shadow:0 8px 20px rgba(0,0,0,.1);
   opacity:0;
-  transform:translateY(40px);
-  transition:.6s ease;
+  transform:translateY(20px);
+  transition:.6s;
 }
-.section.show{opacity:1;transform:none}
+.card.show{opacity:1;transform:none}
 
-/* ===== GRID ===== */
-.grid{
+.feature-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:16px;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:12px;
 }
-.box{
-  background:rgba(255,255,255,.06);
-  padding:16px;
-  border-radius:14px;
+.feature-card{
+  background:var(--feature-card);
+  padding:15px;
+  border-radius:12px;
   text-align:center;
   font-weight:600;
-  transition:.25s;
-}
-.box:hover{transform:translateY(-6px)}
-
-/* ===== MODAL ===== */
-.modal{
-  position:fixed;inset:0;
-  background:rgba(0,0,0,.6);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:999;
-}
-.modal-content{
-  background:var(--card);
-  padding:25px;
-  border-radius:16px;
-  max-width:400px;
-  width:90%;
-}
-.benefit{
-  background:rgba(255,255,255,.07);
-  padding:10px;
-  border-radius:10px;
-  margin-bottom:8px;
 }
 
-/* ===== WA ===== */
+/* BUTTON */
+.btn{
+  background:var(--primary);
+  color:white;
+  padding:10px 16px;
+  border-radius:8px;
+  font-weight:600;
+}
+.btn:hover{background:var(--accent);color:#000}
+
 .btn-wa{
   background:#25D366;
   color:white;
   padding:12px 20px;
   border-radius:12px;
   font-weight:700;
-  display:inline-block;
 }
-.btn-wa:hover{background:#128C7E}
 
-footer{text-align:center;color:var(--muted);padding:30px 10px}
-
-@media(max-width:600px){
-  .menu{justify-content:center}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:18px;
 }
+
+.benefit-box{
+  background:var(--bg);
+  padding:8px;
+  margin:5px 0;
+  border-radius:8px;
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+.modal-content{
+  background:var(--card);
+  padding:25px;
+  border-radius:14px;
+  max-width:500px;
+  width:90%;
+}
+
+footer{text-align:center;color:var(--muted);padding:20px}
 </style>
 </head>
 
-<body>
+<body class="dark">
 
 <!-- LANDING -->
 <section class="landing">
-  <div class="landing-content">
+  <div>
     <h1>Server Calmionix SMP</h1>
-    <p>Survival • Economy • Quest • PVP • Gacha • Jobs</p>
-    <div class="btn-group">
-      <a href="#rank" class="btn">Beli Rank</a>
-      <a href="#ratecard" class="btn">Endorse</a>
-    </div>
+    <p>Survival • Economy • Quest • Gacha • PVP</p>
+    <button class="btn" onclick="document.getElementById('rank').scrollIntoView({behavior:'smooth'})">Beli Rank</button>
+    <button class="btn" onclick="document.getElementById('ratecard').scrollIntoView({behavior:'smooth'})">Endorse</button>
   </div>
 </section>
 
 <header>
 <nav>
-<b>Calmionix SMP</b>
-<div class="menu">
-  <a href="#server">Server</a>
-  <a href="#rank">Rank</a>
-  <a href="#ratecard">Rate Card</a>
-  <button onclick="toggleTheme()">🌙/☀️</button>
-</div>
+  <b>Server Calmionix SMP</b>
+  <div class="menu">
+    <a href="#server">Server</a>
+    <a href="#rank">Rank</a>
+    <a href="#ratecard">Rate Card</a>
+    <button onclick="toggleTheme()">🌙/☀️</button>
+  </div>
 </nav>
 </header>
 
+<div class="hero">
+  <h1>Server Calmionix SMP</h1>
+  <p>Survival | Economy | Quest | Casino | Gacha | Jobs | PVP</p>
+</div>
+
 <div class="container">
 
-<section id="server" class="section">
+<section id="server" class="card">
 <h2>Fitur Server</h2>
-<div class="grid">
-<div class="box">Survival Economy</div>
-<div class="box">Quest</div>
-<div class="box">Casino</div>
-<div class="box">Gacha</div>
-<div class="box">Jobs</div>
-<div class="box">PVP Area</div>
-<div class="box">Shop</div>
-<div class="box">Pasar</div>
+<div class="feature-grid">
+  <div class="feature-card">Survival</div>
+  <div class="feature-card">Economy</div>
+  <div class="feature-card">Quest</div>
+  <div class="feature-card">Casino</div>
+  <div class="feature-card">Gacha</div>
+  <div class="feature-card">Jobs</div>
+  <div class="feature-card">PVP Area</div>
+  <div class="feature-card">Shop</div>
+  <div class="feature-card">Pasar</div>
 </div>
-<p><b>IP:</b> play.calmionix.my.id | <b>Port:</b> 19139<br>Java & Bedrock All Version</p>
+<p><b>IP:</b> play.calmionix.my.id | <b>Port:</b> 19139</p>
 </section>
 
-<section id="rank" class="section">
+<section id="rank" class="card">
 <h2>Rank Store</h2>
 <div class="grid">
-<div class="box"><h3>VIP</h3><button class="btn" onclick="openModal('VIP',['/fly','/feed','Money 20K'])">Beli</button></div>
-<div class="box"><h3>VIP+</h3><button class="btn" onclick="openModal('VIP+',['Semua VIP','/repair','Money 35K'])">Beli</button></div>
-<div class="box"><h3>MVP</h3><button class="btn" onclick="openModal('MVP',['Semua Rank','/heal','Money 50K'])">Beli</button></div>
-<div class="box"><h3>CUSTOM RANK</h3><button class="btn" onclick="openModal('Custom Rank',['Nama Custom','Warna Custom','Request Fitur'])">Diskusi</button></div>
+
+<div class="card">
+<h3>VIP — Rp10K</h3>
+<div class="benefit-box">/fly</div>
+<div class="benefit-box">/feed</div>
+<button class="btn" onclick="openPay('VIP — Rp10K')">Beli</button>
+</div>
+
+<div class="card">
+<h3>VIP+ — Rp25K</h3>
+<div class="benefit-box">Semua VIP</div>
+<div class="benefit-box">/kit vip+</div>
+<button class="btn" onclick="openPay('VIP+ — Rp25K')">Beli</button>
+</div>
+
+<div class="card">
+<h3>MVP — Rp45K</h3>
+<div class="benefit-box">Semua VIP+</div>
+<div class="benefit-box">/heal</div>
+<button class="btn" onclick="openPay('MVP — Rp45K')">Beli</button>
+</div>
+
+<div class="card">
+<h3>CUSTOM RANK</h3>
+<div class="benefit-box">Custom nama & fitur</div>
+<button class="btn" onclick="openPay('CUSTOM RANK')">Diskusi</button>
+</div>
+
 </div>
 </section>
 
-<section id="ratecard" class="section">
+<section id="ratecard" class="card">
 <h2>Rate Card Endorse</h2>
 <div class="grid">
-<div class="box">TikTok<br>Rp30K<br><a class="btn" href="https://wa.me/6282130570915" target="_blank">Beli</a></div>
-<div class="box">YouTube<br>Rp30K<br><a class="btn" href="https://wa.me/6282130570915" target="_blank">Beli</a></div>
-<div class="box">WhatsApp<br>Rp20K / 2x<br><a class="btn" href="https://wa.me/6282130570915" target="_blank">Beli</a></div>
-<div class="box">Konten Only<br>Rp30K<br><a class="btn" href="https://wa.me/6282130570915" target="_blank">Beli</a></div>
+
+<div class="card">
+<h3>TikTok — Rp30K</h3>
+<button class="btn" onclick="openPay('Endorse TikTok')">Beli</button>
+</div>
+
+<div class="card">
+<h3>YouTube — Rp30K</h3>
+<button class="btn" onclick="openPay('Endorse YouTube')">Beli</button>
+</div>
+
+<div class="card">
+<h3>WA Channel — Rp20K</h3>
+<button class="btn" onclick="openPay('Endorse WhatsApp')">Beli</button>
+</div>
+
 </div>
 </section>
 
 </div>
 
-<footer>© Server Calmionix SMP</footer>
-
 <!-- MODAL -->
-<div class="modal" id="modal">
+<div class="modal" id="payModal">
   <div class="modal-content">
-    <h3 id="modalTitle"></h3>
-    <div id="modalBody"></div><br>
-    <a id="modalWA" class="btn-wa" target="_blank">Chat Admin</a><br><br>
-    <button class="btn" onclick="closeModal()">Tutup</button>
+    <h3 id="payTitle"></h3>
+    <a class="btn-wa" id="waLink" target="_blank">Chat Admin</a><br><br>
+    <button class="btn" onclick="closePay()">Tutup</button>
   </div>
 </div>
 
+<footer>© Calmionix SMP</footer>
+
 <script>
-/* theme */
-function toggleTheme(){document.body.classList.toggle('light')}
-
-/* scroll anim */
-const sec=document.querySelectorAll('.section');
-window.addEventListener('scroll',()=>{
-  sec.forEach(s=>{
-    if(s.getBoundingClientRect().top<window.innerHeight-80)
-      s.classList.add('show');
-  });
-  document.documentElement.style.setProperty('--scroll',window.scrollY);
-});
-
-/* modal */
-function openModal(title,benefits){
-  document.getElementById('modalTitle').innerText=title;
-  const body=document.getElementById('modalBody');
-  body.innerHTML='';
-  benefits.forEach(b=>{
-    const d=document.createElement('div');
-    d.className='benefit';
-    d.innerText=b;
-    body.appendChild(d);
-  });
-  document.getElementById('modalWA').href=
-    'https://wa.me/6282130570915?text=Halo Admin Calmionix, saya ingin '+title;
-  document.getElementById('modal').style.display='flex';
+function toggleTheme(){
+  document.body.classList.toggle("light");
 }
-function closeModal(){document.getElementById('modal').style.display='none'}
+const cards=document.querySelectorAll('.card');
+function show(){
+  cards.forEach(c=>{
+    if(c.getBoundingClientRect().top<innerHeight-50)c.classList.add('show')
+  })
+}
+addEventListener('scroll',show);addEventListener('load',show);
+
+function openPay(text){
+  document.getElementById('payTitle').innerText=text;
+  document.getElementById('waLink').href=
+  'https://wa.me/6282130570915?text='+encodeURIComponent(
+  '*Halo Admin Calmionix*\nSaya tertarik dengan '+text+'\nSaya sudah cek website:\ncalmionix.my.id');
+  document.getElementById('payModal').style.display='flex';
+}
+function closePay(){document.getElementById('payModal').style.display='none'}
 </script>
 
 </body>
