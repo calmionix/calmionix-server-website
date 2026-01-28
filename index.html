@@ -57,7 +57,6 @@ nav a,nav button{color:white;background:none;font-size:16px;}
 .btn-rank-mvp{background:#ff4444;color:#fff;}
 .btn-rank-custom{background:#aa44ff;color:#fff;}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;}
-footer{text-align:center;color:var(--muted);font-size:14px;padding:20px 0;}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:999;transition:opacity 0.3s;}
 .modal-content{background:var(--card);padding:25px;border-radius:14px;text-align:center;max-width:500px;width:90%;}
 .modal-content .benefit-box{background:var(--bg);padding:10px;margin:5px;border-radius:10px;display:flex;align-items:center;gap:10px;box-shadow:0 3px 8px rgba(0,0,0,0.1);}
@@ -113,14 +112,9 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:20px 0;}
   <div class="feature-card">PVP Area</div>
   <div class="feature-card">Shop</div>
   <div class="feature-card">Pasar</div>
-  <!-- Player Online Card -->
-  <div class="feature-card" id="playerOnlineCard">
-    <b>Player Online:</b> <span id="playerCount">Loading...</span>
-    <br>
-    <button class="btn" id="showPlayerBtn">Lihat List Player</button>
-    <div id="playerList" style="margin-top:8px; font-size:14px; color:var(--muted); display:none;"></div>
-  </div>
+  <div class="feature-card"><button class="btn" onclick="fetchPlayers()">List Player</button></div>
 </div>
+<div id="playerList" style="margin-top:15px;color:var(--text);"></div>
 <div style="display:flex;align-items:center;justify-content:space-between;margin-top:15px;flex-wrap:wrap;">
   <p><b>IP Server:</b> play.calmionix.my.id</p>
   <button class="btn" onclick="copyIP()">Copy IP</button>
@@ -271,4 +265,11 @@ function openPay(btn){
     benefitContainer.appendChild(div);
   });
   document.getElementById('modalWA').href='https://wa.me/6282130570915?text='+encodeURIComponent('Halo Admin Calmionix, saya ingin membeli '+rank);
-  document.getElementById('payModal').style
+  document.getElementById('payModal').style.display='flex';
+}
+function closePay(){document.getElementById('payModal').style.display='none';}
+
+// Fetch player list
+function fetchPlayers(){
+  const container = document.getElementById('playerList');
+  container.innerHTML='Loading...
