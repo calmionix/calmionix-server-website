@@ -113,6 +113,13 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:20px 0;}
   <div class="feature-card">PVP Area</div>
   <div class="feature-card">Shop</div>
   <div class="feature-card">Pasar</div>
+  <!-- Player Online Card -->
+  <div class="feature-card" id="playerOnlineCard">
+    <b>Player Online:</b> <span id="playerCount">Loading...</span>
+    <br>
+    <button class="btn" id="showPlayerBtn">Lihat List Player</button>
+    <div id="playerList" style="margin-top:8px; font-size:14px; color:var(--muted); display:none;"></div>
+  </div>
 </div>
 <div style="display:flex;align-items:center;justify-content:space-between;margin-top:15px;flex-wrap:wrap;">
   <p><b>IP Server:</b> play.calmionix.my.id</p>
@@ -264,9 +271,4 @@ function openPay(btn){
     benefitContainer.appendChild(div);
   });
   document.getElementById('modalWA').href='https://wa.me/6282130570915?text='+encodeURIComponent('Halo Admin Calmionix, saya ingin membeli '+rank);
-  document.getElementById('payModal').style.display='flex';
-}
-function closePay(){document.getElementById('payModal').style.display='none';}
-</script>
-</body>
-</html>
+  document.getElementById('payModal').style
