@@ -58,7 +58,7 @@ nav a,nav button{color:white;background:none;font-size:16px;}
 .btn-rank-custom{background:#aa44ff;color:#fff;}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;}
 footer{text-align:center;color:var(--muted);font-size:14px;padding:20px 0;}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:999;transition:opacity 0.3s;}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:999;transition:opacity 0.3s;overflow:auto;}
 .modal-content{background:var(--card);padding:25px;border-radius:14px;text-align:center;max-width:500px;width:90%;}
 .modal-content .benefit-box{background:var(--bg);padding:10px;margin:5px;border-radius:10px;display:flex;align-items:center;gap:10px;box-shadow:0 3px 8px rgba(0,0,0,0.1);}
 #toast{position:fixed;top:20px;right:20px;background:#333;color:#fff;padding:10px 20px;border-radius:12px;opacity:0;pointer-events:none;transition:opacity 0.5s, transform 0.5s;transform:translateY(-20px);}
@@ -119,8 +119,10 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:20px 0;}
   <button class="btn" onclick="copyIP()">Copy IP</button>
   <p><b>Port:</b> 19139</p>
   <button class="btn" onclick="copyPort()">Copy Port</button>
+  <button class="btn" onclick="showPlayers()">List Player</button>
 </div>
 <p>Support: Java & Bedrock All Version</p>
+<div id="playerList" style="margin-top:10px;display:none;"></div>
 </section>
 
 <section id="rank" class="card">
@@ -264,9 +266,3 @@ function openPay(btn){
     benefitContainer.appendChild(div);
   });
   document.getElementById('modalWA').href='https://wa.me/6282130570915?text='+encodeURIComponent('Halo Admin Calmionix, saya ingin membeli '+rank);
-  document.getElementById('payModal').style.display='flex';
-}
-function closePay(){document.getElementById('payModal').style.display='none';}
-</script>
-</body>
-</html>
