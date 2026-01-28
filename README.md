@@ -1,2 +1,2 @@
 # calmionix-server-website
-malas
+intinya saya malas buat file, simple, web asal jadi
