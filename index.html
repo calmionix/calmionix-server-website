@@ -20,19 +20,18 @@ body.light{
   --text:#0b1c2d;
   --muted:#5f6f82;
 }
-
-*{box-sizing:border-box;}
+*{box-sizing:border-box}
 body{
   margin:0;
   font-family:Segoe UI,Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
-  transition:background .4s,color .4s;
+  transition:.4s;
 }
 a{text-decoration:none;color:inherit}
 button{border:none;cursor:pointer;font-family:inherit}
 
-/* ===== LANDING PARALLAX ===== */
+/* ===== LANDING ===== */
 .landing{
   height:100vh;
   display:flex;
@@ -47,27 +46,12 @@ button{border:none;cursor:pointer;font-family:inherit}
   position:absolute;
   inset:0;
   background:linear-gradient(120deg,#1e88e5,#0b1c2d);
-  transform:translateY(var(--parallax));
+  transform:translateY(calc(var(--scroll)*0.3px));
 }
-.landing-content{
-  position:relative;
-  z-index:2;
-  padding:20px;
-}
-.landing h1{
-  font-size:clamp(32px,6vw,56px);
-  margin-bottom:10px;
-}
-.landing p{
-  color:var(--muted);
-  margin-bottom:25px;
-}
-.landing .btn-group{
-  display:flex;
-  gap:15px;
-  flex-wrap:wrap;
-  justify-content:center;
-}
+.landing-content{z-index:2;padding:20px}
+.landing h1{font-size:clamp(32px,6vw,56px)}
+.landing p{color:var(--muted);margin-bottom:25px}
+.btn-group{display:flex;gap:15px;justify-content:center;flex-wrap:wrap}
 
 /* ===== BUTTON ===== */
 .btn{
@@ -82,11 +66,9 @@ button{border:none;cursor:pointer;font-family:inherit}
 
 /* ===== HEADER ===== */
 header{
-  position:sticky;
-  top:0;
+  position:sticky;top:0;z-index:99;
+  backdrop-filter:blur(10px);
   background:rgba(0,0,0,.4);
-  backdrop-filter:blur(8px);
-  z-index:99;
 }
 nav{
   max-width:1100px;
@@ -118,17 +100,42 @@ nav{
   gap:16px;
 }
 .box{
-  background:rgba(255,255,255,.05);
-  padding:15px;
+  background:rgba(255,255,255,.06);
+  padding:16px;
   border-radius:14px;
   text-align:center;
   font-weight:600;
+  transition:.25s;
+}
+.box:hover{transform:translateY(-6px)}
+
+/* ===== MODAL ===== */
+.modal{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+.modal-content{
+  background:var(--card);
+  padding:25px;
+  border-radius:16px;
+  max-width:400px;
+  width:90%;
+}
+.benefit{
+  background:rgba(255,255,255,.07);
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:8px;
 }
 
 /* ===== WA ===== */
 .btn-wa{
   background:#25D366;
-  color:#fff;
+  color:white;
   padding:12px 20px;
   border-radius:12px;
   font-weight:700;
@@ -136,14 +143,8 @@ nav{
 }
 .btn-wa:hover{background:#128C7E}
 
-/* ===== FOOTER ===== */
-footer{
-  text-align:center;
-  color:var(--muted);
-  padding:30px 10px;
-}
+footer{text-align:center;color:var(--muted);padding:30px 10px}
 
-/* ===== MOBILE ===== */
 @media(max-width:600px){
   .menu{justify-content:center}
 }
@@ -152,8 +153,8 @@ footer{
 
 <body>
 
-<!-- ===== LANDING ===== -->
-<section class="landing" id="top">
+<!-- LANDING -->
+<section class="landing">
   <div class="landing-content">
     <h1>Server Calmionix SMP</h1>
     <p>Survival • Economy • Quest • PVP • Gacha • Jobs</p>
@@ -166,13 +167,13 @@ footer{
 
 <header>
 <nav>
-  <b>Calmionix SMP</b>
-  <div class="menu">
-    <a href="#server">Server</a>
-    <a href="#rank">Rank</a>
-    <a href="#ratecard">Rate Card</a>
-    <button onclick="toggleTheme()">🌙 / ☀️</button>
-  </div>
+<b>Calmionix SMP</b>
+<div class="menu">
+  <a href="#server">Server</a>
+  <a href="#rank">Rank</a>
+  <a href="#ratecard">Rate Card</a>
+  <button onclick="toggleTheme()">🌙/☀️</button>
+</div>
 </nav>
 </header>
 
@@ -181,93 +182,82 @@ footer{
 <section id="server" class="section">
 <h2>Fitur Server</h2>
 <div class="grid">
-  <div class="box">Survival Economy</div>
-  <div class="box">Quest</div>
-  <div class="box">Casino</div>
-  <div class="box">Gacha</div>
-  <div class="box">Jobs</div>
-  <div class="box">PVP Area</div>
-  <div class="box">Shop</div>
-  <div class="box">Pasar</div>
+<div class="box">Survival Economy</div>
+<div class="box">Quest</div>
+<div class="box">Casino</div>
+<div class="box">Gacha</div>
+<div class="box">Jobs</div>
+<div class="box">PVP Area</div>
+<div class="box">Shop</div>
+<div class="box">Pasar</div>
 </div>
-
-<p style="margin-top:15px">
-<b>IP:</b> play.calmionix.my.id |
-<b>Port:</b> 19139 <br>
-Support Java & Bedrock (All Version)
-</p>
+<p><b>IP:</b> play.calmionix.my.id | <b>Port:</b> 19139<br>Java & Bedrock All Version</p>
 </section>
 
 <section id="rank" class="section">
 <h2>Rank Store</h2>
 <div class="grid">
-  <div class="box">
-    <h3>VIP — Rp10K</h3>
-    <a class="btn" href="https://wa.me/6282130570915?text=Halo%20Admin%20Calmionix,%20saya%20ingin%20membeli%20Rank%20VIP" target="_blank">Beli</a>
-  </div>
-  <div class="box">
-    <h3>VIP+ — Rp25K</h3>
-    <a class="btn" href="https://wa.me/6282130570915?text=Halo%20Admin%20Calmionix,%20saya%20ingin%20membeli%20Rank%20VIP+" target="_blank">Beli</a>
-  </div>
-  <div class="box">
-    <h3>MVP — Rp45K</h3>
-    <a class="btn" href="https://wa.me/6282130570915?text=Halo%20Admin%20Calmionix,%20saya%20ingin%20membeli%20Rank%20MVP" target="_blank">Beli</a>
-  </div>
+<div class="box"><h3>VIP</h3><button class="btn" onclick="openModal('VIP',['/fly','/feed','Money 20K'])">Beli</button></div>
+<div class="box"><h3>VIP+</h3><button class="btn" onclick="openModal('VIP+',['Semua VIP','/repair','Money 35K'])">Beli</button></div>
+<div class="box"><h3>MVP</h3><button class="btn" onclick="openModal('MVP',['Semua Rank','/heal','Money 50K'])">Beli</button></div>
+<div class="box"><h3>CUSTOM RANK</h3><button class="btn" onclick="openModal('Custom Rank',['Nama Custom','Warna Custom','Request Fitur'])">Diskusi</button></div>
 </div>
 </section>
 
 <section id="ratecard" class="section">
 <h2>Rate Card Endorse</h2>
 <div class="grid">
-  <div class="box">
-    TikTok<br>Rp30.000 / Konten<br><br>
-    <a class="btn" href="https://wa.me/6282130570915?text=Halo%20Admin%20Calmionix,%20saya%20ingin%20endorse%20TikTok" target="_blank">Beli</a>
-  </div>
-  <div class="box">
-    YouTube<br>Rp30.000 / Konten<br><br>
-    <a class="btn" href="https://wa.me/6282130570915?text=Halo%20Admin%20Calmionix,%20saya%20ingin%20endorse%20YouTube" target="_blank">Beli</a>
-  </div>
-  <div class="box">
-    WA Channel<br>Rp20.000 / 2x<br><br>
-    <a class="btn" href="https://wa.me/6282130570915?text=Halo%20Admin%20Calmionix,%20saya%20ingin%20endorse%20WA" target="_blank">Beli</a>
-  </div>
+<div class="box">TikTok<br>Rp30K<br><a class="btn" href="https://wa.me/6282130570915" target="_blank">Beli</a></div>
+<div class="box">YouTube<br>Rp30K<br><a class="btn" href="https://wa.me/6282130570915" target="_blank">Beli</a></div>
+<div class="box">WhatsApp<br>Rp20K / 2x<br><a class="btn" href="https://wa.me/6282130570915" target="_blank">Beli</a></div>
+<div class="box">Konten Only<br>Rp30K<br><a class="btn" href="https://wa.me/6282130570915" target="_blank">Beli</a></div>
 </div>
-</section>
-
-<section class="section">
-<h2>Pembayaran</h2>
-<a class="btn-wa" href="https://wa.me/6282130570915" target="_blank">Hubungi Admin</a>
 </section>
 
 </div>
 
-<footer>
-© Server Calmionix SMP
-</footer>
+<footer>© Server Calmionix SMP</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h3 id="modalTitle"></h3>
+    <div id="modalBody"></div><br>
+    <a id="modalWA" class="btn-wa" target="_blank">Chat Admin</a><br><br>
+    <button class="btn" onclick="closeModal()">Tutup</button>
+  </div>
+</div>
 
 <script>
-/* THEME */
-function toggleTheme(){
-  document.body.classList.toggle("light");
-}
+/* theme */
+function toggleTheme(){document.body.classList.toggle('light')}
 
-/* SCROLL ANIMATION */
-const sections=document.querySelectorAll(".section");
-window.addEventListener("scroll",()=>{
-  sections.forEach(s=>{
-    if(s.getBoundingClientRect().top < window.innerHeight-80){
-      s.classList.add("show");
-    }
+/* scroll anim */
+const sec=document.querySelectorAll('.section');
+window.addEventListener('scroll',()=>{
+  sec.forEach(s=>{
+    if(s.getBoundingClientRect().top<window.innerHeight-80)
+      s.classList.add('show');
   });
+  document.documentElement.style.setProperty('--scroll',window.scrollY);
 });
 
-/* PARALLAX */
-window.addEventListener("scroll",()=>{
-  document.documentElement.style.setProperty(
-    "--parallax",
-    window.scrollY * 0.3 + "px"
-  );
-});
+/* modal */
+function openModal(title,benefits){
+  document.getElementById('modalTitle').innerText=title;
+  const body=document.getElementById('modalBody');
+  body.innerHTML='';
+  benefits.forEach(b=>{
+    const d=document.createElement('div');
+    d.className='benefit';
+    d.innerText=b;
+    body.appendChild(d);
+  });
+  document.getElementById('modalWA').href=
+    'https://wa.me/6282130570915?text=Halo Admin Calmionix, saya ingin '+title;
+  document.getElementById('modal').style.display='flex';
+}
+function closeModal(){document.getElementById('modal').style.display='none'}
 </script>
 
 </body>
