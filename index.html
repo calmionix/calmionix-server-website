@@ -10,16 +10,11 @@
   --primary:#2196f3;
   --secondary:#1565c0;
   --accent:#ffcc00;
-
   --bg:#0a1624;
   --card:#111f33;
   --card-soft:#162a46;
-
   --text:#ffffff;
   --muted:#9fb3c8;
-
-  --radius:16px;
-  --shadow:0 10px 30px rgba(0,0,0,.25);
 }
 
 body.light{
@@ -33,7 +28,7 @@ body.light{
 *{box-sizing:border-box}
 body{
   margin:0;
-  font-family:Segoe UI,system-ui,Arial,sans-serif;
+  font-family:Segoe UI,Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
   scroll-behavior:smooth;
@@ -100,11 +95,10 @@ nav a,nav button{
 /* CARD */
 .card{
   background:var(--card);
-  border-radius:var(--radius);
+  border-radius:16px;
   padding:20px;
-  box-shadow:var(--shadow);
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
   margin-bottom:22px;
-
   opacity:0;
   transform:translateY(24px);
   transition:.5s ease;
@@ -130,10 +124,6 @@ nav a,nav button{
   border-radius:14px;
   text-align:center;
   font-weight:700;
-  transition:.25s;
-}
-.feature-card:hover{
-  transform:scale(1.06);
 }
 
 /* BUTTON */
@@ -163,7 +153,6 @@ nav a,nav button{
   align-items:center;
   margin-right:8px;
 }
-.btn-sosmed:hover{background:var(--accent);color:#000}
 
 .btn-wa{
   background:#25D366;
@@ -174,9 +163,8 @@ nav a,nav button{
   display:inline-flex;
   gap:10px;
 }
-.btn-wa:hover{background:#128C7E}
 
-/* RANK COLORS */
+/* RANK */
 .btn-rank-vip{background:#ffd54f;color:#000}
 .btn-rank-vipplus{background:#ff9800;color:#000}
 .btn-rank-mvp{background:#ff5252}
@@ -234,10 +222,6 @@ footer{
   padding:22px 0;
   font-size:14px;
 }
-
-@media(max-width:600px){
-  nav{flex-direction:column;align-items:flex-start}
-}
 </style>
 </head>
 
@@ -265,9 +249,65 @@ footer{
 </div>
 
 <div class="container">
-<!-- ISI KONTEN TETAP SAMA PERSIS -->
-<!-- (About, Server, Rank Streamer, Vote, Rank Store, Rate Card, Payment) -->
-<!-- TIDAK ADA FITUR YANG DIHAPUS -->
+
+<section id="about" class="card">
+<h2>Tentang Calmionix</h2>
+<p>Owner & Creator dari Server Calmionix SMP</p>
+<a class="btn-sosmed" href="https://youtube.com/@calmionix" target="_blank">YouTube</a>
+<a class="btn-sosmed" href="https://www.tiktok.com/@calmionix.id" target="_blank">TikTok</a>
+<a class="btn-sosmed" href="https://linktr.ee/calmionix" target="_blank">Linktree</a>
+<br><br>
+<a href="https://wa.me/6282130570915" target="_blank" class="btn-wa">Chat WhatsApp</a>
+</section>
+
+<section id="server" class="card">
+<h2>Fitur Server</h2>
+<div class="feature-grid">
+  <div class="feature-card">Survival</div>
+  <div class="feature-card">Economy</div>
+  <div class="feature-card">Quest</div>
+  <div class="feature-card">Casino</div>
+  <div class="feature-card">Gacha</div>
+  <div class="feature-card">Jobs</div>
+  <div class="feature-card">PVP Area</div>
+  <div class="feature-card">Shop</div>
+  <div class="feature-card">Pasar</div>
+</div>
+<p><b>IP:</b> play.calmionix.fun | <b>Port:</b> 19139</p>
+</section>
+
+<section id="rank" class="card">
+<h2>Rank Store</h2>
+<div class="grid">
+<div class="card">
+<h3>VIP — Rp10K</h3>
+<div class="benefit-box">/fly</div>
+<div class="benefit-box">/feed</div>
+<div class="benefit-box">/enderchest</div>
+<button class="btn btn-rank-vip" data-rank="VIP" data-benefits="/fly;/feed;/enderchest" onclick="openPay(this)">Beli</button>
+</div>
+
+<div class="card">
+<h3>VIP+ — Rp25K</h3>
+<div class="benefit-box">Semua VIP</div>
+<div class="benefit-box">/kit vip+</div>
+<button class="btn btn-rank-vipplus" data-rank="VIP+" data-benefits="Semua VIP;/kit vip+" onclick="openPay(this)">Beli</button>
+</div>
+
+<div class="card">
+<h3>MVP — Rp45K</h3>
+<div class="benefit-box">Semua VIP & VIP+</div>
+<div class="benefit-box">/kit mvp</div>
+<button class="btn btn-rank-mvp" data-rank="MVP" data-benefits="Semua VIP & VIP+;/kit mvp" onclick="openPay(this)">Beli</button>
+</div>
+</div>
+</section>
+
+<section id="payment" class="card">
+<h2>Pembayaran</h2>
+<a href="https://wa.me/6282130570915" target="_blank" class="btn-wa">Chat Admin</a>
+</section>
+
 </div>
 
 <div class="modal" id="payModal">
@@ -279,42 +319,24 @@ footer{
   </div>
 </div>
 
-<div id="toast">Teks disalin!</div>
+<div id="toast">Disalin!</div>
 <footer>© Server Calmionix SMP • All Rights Reserved</footer>
 
 <script>
 function toggleTheme(){
   document.body.classList.toggle("light");
-  localStorage.setItem("theme",
-    document.body.classList.contains("light")?"light":"dark");
+  localStorage.setItem("theme",document.body.classList.contains("light")?"light":"dark");
 }
-if(localStorage.getItem("theme")==="light"){
-  document.body.classList.add("light");
-}
+if(localStorage.getItem("theme")==="light"){document.body.classList.add("light")}
 
 const cards=document.querySelectorAll(".card");
 function showCards(){
   cards.forEach(c=>{
-    if(c.getBoundingClientRect().top<innerHeight-60){
-      c.classList.add("show");
-    }
-  });
+    if(c.getBoundingClientRect().top<innerHeight-60){c.classList.add("show")}
+  })
 }
 addEventListener("scroll",showCards);
 addEventListener("load",showCards);
-
-addEventListener("scroll",()=>{
-  const d=document.body.scrollHeight-innerHeight;
-  progressBar.style.width=(scrollY/d)*100+"%";
-});
-
-function toast(msg){
-  toastBox.innerText=msg;
-  toastBox.style.opacity=1;
-  setTimeout(()=>toastBox.style.opacity=0,2000);
-}
-function copyIP(){navigator.clipboard.writeText("play.calmionix.fun");toast("IP disalin!")}
-function copyPort(){navigator.clipboard.writeText("19139");toast("Port disalin!")}
 
 function openPay(btn){
   rankName.innerText=btn.dataset.rank;
@@ -325,13 +347,10 @@ function openPay(btn){
     d.innerText=b;
     rankBenefits.appendChild(d);
   });
-  modalWA.href="https://wa.me/6282130570915?text="+
-    encodeURIComponent("Halo Admin Calmionix, saya ingin membeli "+btn.dataset.rank);
+  modalWA.href="https://wa.me/6282130570915?text="+encodeURIComponent("Halo Admin, saya ingin beli rank "+btn.dataset.rank);
   payModal.style.display="flex";
 }
 function closePay(){payModal.style.display="none"}
-
-const toastBox=document.getElementById("toast");
 </script>
 
 </body>
