@@ -183,47 +183,94 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:20px 0;}
 
 <section id="rank" class="card">
 <h2>Rank Store</h2>
+
+<h3 style="margin-top:20px;">🔥 Rank Bulanan (30 Hari)</h3>
 <div class="grid">
+
 <div class="card">
-<h3>VIP — Rp10K</h3>
+<h3>VIP — Rp10K / Bulan</h3>
+<div class="benefit-box">Durasi: 30 Hari</div>
 <div class="benefit-box">/fly</div>
 <div class="benefit-box">/feed</div>
 <div class="benefit-box">/enderchest</div>
-<div class="benefit-box">Cosmetic 25%</div>
-<div class="benefit-box">Prefix VIP eksklusif</div>
-<div class="benefit-box">💰 Money awal: 20.000</div>
-<button class="btn btn-rank-vip" data-rank="VIP — Rp10K" data-benefits="/fly;/feed;/enderchest;Cosmetic 25%;Prefix VIP eksklusif;💰 Money awal: 20.000" onclick="openPay(this)">Beli</button>
+<div class="benefit-box">Prefix VIP</div>
+<button class="btn btn-rank-vip" 
+data-rank="VIP Bulanan — Rp10K" 
+data-benefits="Durasi 30 Hari;/fly;/feed;/enderchest;Prefix VIP"
+onclick="openPay(this)">Beli</button>
 </div>
+
 <div class="card">
-<h3>VIP+ — Rp25K</h3>
+<h3>VIP+ — Rp20K / Bulan</h3>
+<div class="benefit-box">Durasi: 30 Hari</div>
 <div class="benefit-box">Semua VIP</div>
 <div class="benefit-box">/kit vip+</div>
-<div class="benefit-box">/repair hand</div>
-<div class="benefit-box">/anvil</div>
-<div class="benefit-box">Cosmetic 50%</div>
-<div class="benefit-box">💰 Money awal: 35.000</div>
-<button class="btn btn-rank-vipplus" data-rank="VIP+ — Rp25K" data-benefits="Semua VIP;/kit vip+;/repair hand;/anvil;Cosmetic 50%;💰 Money awal: 35.000" onclick="openPay(this)">Beli</button>
+<div class="benefit-box">/repair</div>
+<div class="benefit-box">Prefix VIP+</div>
+<button class="btn btn-rank-vipplus" 
+data-rank="VIP+ Bulanan — Rp20K" 
+data-benefits="Durasi 30 Hari;Semua VIP;/kit vip+;/repair;Prefix VIP+"
+onclick="openPay(this)">Beli</button>
 </div>
+
 <div class="card">
-<h3>MVP — Rp45K</h3>
+<h3>MVP — Rp40K / Bulan</h3>
+<div class="benefit-box">Durasi: 30 Hari</div>
 <div class="benefit-box">Semua VIP & VIP+</div>
 <div class="benefit-box">/kit mvp</div>
 <div class="benefit-box">/heal</div>
-<div class="benefit-box">Cosmetic 100%</div>
-<div class="benefit-box">Rank tertinggi</div>
-<div class="benefit-box">💰 Money awal: 50.000</div>
-<button class="btn btn-rank-mvp" data-rank="MVP — Rp45K" data-benefits="Semua VIP & VIP+;/kit mvp;/heal;Cosmetic 100%;Rank tertinggi;💰 Money awal: 50.000" onclick="openPay(this)">Beli</button>
+<div class="benefit-box">Prefix MVP</div>
+<button class="btn btn-rank-mvp" 
+data-rank="MVP Bulanan — Rp40K" 
+data-benefits="Durasi 30 Hari;Semua VIP & VIP+;/kit mvp;/heal;Prefix MVP"
+onclick="openPay(this)">Beli</button>
 </div>
+
+</div>
+
+<h3 style="margin-top:40px;">👑 Rank Permanen (Sampai Ganti Season)</h3>
+<div class="grid">
+
 <div class="card">
-<h3>CUSTOM RANK</h3>
-<div class="benefit-box">Bisa custom nama rank sendiri</div>
-<div class="benefit-box">Bisa pilih warna & prefix</div>
-<div class="benefit-box">Bisa request fitur sesuai keinginan</div>
-<div class="benefit-box">💰 Money awal: 100.000</div>
-<button class="btn btn-rank-custom" data-rank="CUSTOM RANK" data-benefits="Bisa custom nama rank sendiri;Bisa pilih warna & prefix;Bisa request fitur sesuai keinginan;💰 Money awal: 100.000" onclick="openPay(this)">Diskusi</button>
+<h3>VIP Permanen — Rp30K</h3>
+<div class="benefit-box">Berlaku sampai reset season</div>
+<div class="benefit-box">Semua fitur VIP</div>
+<div class="benefit-box">Prioritas antrian</div>
+<div class="benefit-box">Tag eksklusif Permanen</div>
+<button class="btn btn-rank-vip" 
+data-rank="VIP Permanen — Rp30K" 
+data-benefits="Berlaku sampai ganti season;Semua fitur VIP;Prioritas antrian;Tag Permanen"
+onclick="openPay(this)">Beli</button>
 </div>
+
+<div class="card">
+<h3>VIP+ Permanen — Rp45K</h3>
+<div class="benefit-box">Berlaku sampai reset season</div>
+<div class="benefit-box">Semua fitur VIP+</div>
+<div class="benefit-box">Prioritas tinggi</div>
+<div class="benefit-box">Tag eksklusif Permanen</div>
+<button class="btn btn-rank-vipplus" 
+data-rank="VIP+ Permanen — Rp45K" 
+data-benefits="Berlaku sampai ganti season;Semua fitur VIP+;Prioritas tinggi;Tag Permanen"
+onclick="openPay(this)">Beli</button>
 </div>
+
+<div class="card">
+<h3>MVP Permanen — Rp70K</h3>
+<div class="benefit-box">Berlaku sampai reset season</div>
+<div class="benefit-box">Semua fitur MVP</div>
+<div class="benefit-box">Akses fitur eksklusif</div>
+<div class="benefit-box">Rank tertinggi Permanen</div>
+<button class="btn btn-rank-mvp" 
+data-rank="MVP Permanen — Rp70K" 
+data-benefits="Berlaku sampai ganti season;Semua fitur MVP;Akses fitur eksklusif;Rank tertinggi Permanen"
+onclick="openPay(this)">Beli</button>
+</div>
+  
+</div>
+  
 </section>
+
 
 <section id="ratecard" class="card">
 <h2>📌 Rate Card — Calmionix</h2>
