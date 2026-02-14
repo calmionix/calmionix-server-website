@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Server Calmionix SMP</title>
 <style>
+/* ====== SYSTEM ====== */
 :root{
   --primary:#1e88e5;
   --secondary:#1565c0;
@@ -13,8 +14,6 @@
   --text:#ffffff;
   --muted:#9fb3c8;
   --accent:#ffcc00;
-  --feature-title:#ffffff;
-  --feature-subtitle:#ffffff;
   --feature-card:#1e3a5a; 
 }
 body.light{
@@ -22,355 +21,169 @@ body.light{
   --card:#ffffff;
   --text:#0b1c2d;
   --muted:#5f6f82;
-  --accent:#ffcc00;
-  --feature-title:#0b1c2d;
-  --feature-subtitle:#0b1c2d;
   --feature-card:#bbdefb;
 }
-*,*::before,*::after{box-sizing:border-box;}
-body{margin:0;font-family:Segoe UI, Arial, sans-serif;scroll-behavior:smooth;background:var(--bg);color:var(--text);}
+body{margin:0;font-family:Segoe UI, Arial, sans-serif;background:var(--bg);color:var(--text);}
 a{text-decoration:none;color:var(--primary);}
 button{cursor:pointer;border:none;font-family:inherit;}
 header{background:linear-gradient(90deg,#1e88e5,#1565c0);color:white;padding:15px;position:sticky;top:0;z-index:99;border-bottom:3px solid var(--accent);}
-nav{display:flex;justify-content:space-between;align-items:center;}
+nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
 nav .menu{display:flex;gap:15px;flex-wrap:wrap;}
-nav a,nav button{color:white;background:none;font-size:16px;}
+nav a,nav button{color:white;background:none;font-size:15px;font-weight:600}
 .hero{text-align:center;padding:60px 15px;background:linear-gradient(120deg,#1e88e5,#bbdefb);border-radius:0 0 30px 30px;}
-.hero h1{font-size:36px;margin:0;text-shadow:1px 1px 3px rgba(0,0,0,0.2);color:var(--feature-title);}
-.hero p{margin:8px 0;color:var(--feature-subtitle);}
-.container{max-width:1000px;margin:auto;padding:20px;}
-.card{background:var(--card);border-radius:12px;padding:18px;margin-bottom:20px;box-shadow:0 8px 20px rgba(0,0,0,0.1);transition: transform 0.3s, box-shadow 0.3s, opacity 0.5s, transform 0.5s;opacity:0;transform: translateY(20px);}
-.card.show{opacity:1;transform: translateY(0);}
-.card:hover, .card:active{
-  transform: translateY(-4px);
-  box-shadow:0 12px 24px rgba(0,0,0,0.18);
-  border:1px solid var(--accent);}
-.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:15px;}
-.feature-card{background:var(--feature-card);padding:15px;border-radius:12px;text-align:center;font-weight:600;transition: transform 0.2s, box-shadow 0.2s,color 0.3s;}
-.feature-card:hover{
-  transform: translateY(-3px);
-  box-shadow:0 8px 18px rgba(0,0,0,0.15);}
-.btn{display:inline-block;background:var(--primary);color:white;padding:10px 16px;border-radius:8px;font-weight:600;margin-top:10px;transition: transform 0.2s, background 0.3s, color 0.3s;}
-.btn:hover{
-  transform: translateY(-2px);
-  background:var(--accent);
-  color:#0b1c2d;}
-.btn:active{transform:scale(0.98);}
-.btn-sosmed{background:var(--secondary);padding:12px;border-radius:10px;margin-right:10px;display:inline-flex;align-items:center;gap:8px;color:white;font-weight:600;transition: transform 0.2s, background 0.3s, color 0.3s;}
-.btn-sosmed:hover{
-  transform: translateY(-2px);
-  background:var(--accent);
-  color:#0b1c2d;}
-.btn-wa{background:#25D366;color:white;padding:12px 20px;border-radius:12px;font-weight:700;display:inline-flex;align-items:center;gap:10px;transition: transform 0.2s, background 0.3s;}
-.btn-wa:hover{
-  transform: translateY(-2px);
-  background:#128C7E;}
-.btn-rank-vip{background:#ffcc00;color:#0b1c2d;}
-.btn-rank-vipplus{background:#ff8800;color:#0b1c2d;}
-.btn-rank-mvp{background:#ff4444;color:#fff;}
-.btn-rank-custom{background:#aa44ff;color:#fff;}
+.hero h1{margin:0;font-size:34px;}
+.container{max-width:1100px;margin:auto;padding:20px;}
+.card{background:var(--card);border-radius:14px;padding:20px;margin-bottom:20px;box-shadow:0 10px 25px rgba(0,0,0,0.15);opacity:0;transform:translateY(30px);transition:0.4s;}
+.card.show{opacity:1;transform:translateY(0);}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;}
-footer{text-align:center;color:var(--muted);font-size:14px;padding:20px 0;}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:999;transition:opacity 0.3s;}
-.modal-content{background:var(--card);padding:25px;border-radius:14px;text-align:center;max-width:500px;width:90%;}
-.modal-content .benefit-box{background:var(--bg);padding:10px;margin:5px;border-radius:10px;display:flex;align-items:center;gap:10px;box-shadow:0 3px 8px rgba(0,0,0,0.1);}
-#toast{position:fixed;top:20px;right:20px;background:#333;color:#fff;padding:10px 20px;border-radius:12px;opacity:0;pointer-events:none;transition:opacity 0.5s, transform 0.5s;transform:translateY(-20px);}
-#progressBar{position:fixed;top:0;left:0;height:5px;background:var(--accent);width:0%;z-index:1000;transition:width 0.25s;}
-@media(max-width:600px){nav{flex-direction:column;align-items:flex-start;}}
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:15px;}
+.feature-card{background:var(--feature-card);padding:14px;border-radius:10px;text-align:center;font-weight:600;}
+.btn{display:inline-block;background:var(--primary);color:white;padding:10px 16px;border-radius:8px;font-weight:600;margin-top:10px;}
+.btn:hover{background:var(--accent);color:#000}
+.btn-wa{background:#25D366;color:white;padding:12px 20px;border-radius:12px;font-weight:700;}
+.btn-rank-vip{background:#ffcc00;color:#000}
+.btn-rank-vipplus{background:#ff8800;color:#000}
+.btn-rank-mvp{background:#ff4444;color:#fff}
+.btn-rank-custom{background:#aa44ff;color:#fff}
+.benefit-box{background:var(--bg);padding:10px;margin:6px 0;border-radius:10px;}
+footer{text-align:center;padding:20px;color:var(--muted)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:999;}
+.modal-content{background:var(--card);padding:25px;border-radius:14px;max-width:500px;width:90%;}
+#toast{position:fixed;top:20px;right:20px;background:#333;color:#fff;padding:10px 20px;border-radius:10px;opacity:0;transition:0.4s}
+#progressBar{position:fixed;top:0;left:0;height:4px;background:var(--accent);width:0%;z-index:1000}
+
+/* PAGE SYSTEM */
+.page{display:none}
+.page.active{display:block}
+
+@media(max-width:600px){
+nav{flex-direction:column;align-items:flex-start}
+}
 </style>
 </head>
-<body class="dark">
+<body>
 
 <div id="progressBar"></div>
+
 <header>
 <nav>
-  <div><b>Server Calmionix SMP</b></div>
-  <div class="menu">
-    <a href="#about">About</a>
-    <a href="#server">Server</a>
-    <a href="#rank">Rank</a>
-    <a href="#ratecard">Rate Card</a>
-    <a href="#payment">Payment</a>
-    <button onclick="toggleTheme()">🌙/☀️</button>
-  </div>
+<div><b>Calmionix SMP</b></div>
+<div class="menu">
+<button onclick="showPage('mainPage')">Server & Rank</button>
+<button onclick="showPage('endorsePage')">Endorse</button>
+<button onclick="toggleTheme()">🌙/☀️</button>
+</div>
 </nav>
 </header>
 
+<!-- ================= PAGE 1 ================= -->
+<div id="mainPage" class="page active">
+
 <div class="hero">
-  <h1>Server Calmionix SMP</h1>
-  <p>Survival | Economy | Quest | Casino | Gacha | Jobs | PVP Area | Shop | Pasar</p>
+<h1>Server Calmionix SMP</h1>
+<p>Survival | Economy | Quest | Casino | Gacha | Jobs | PVP | Shop | Pasar</p>
 </div>
 
 <div class="container">
-<section id="about" class="card">
+
+<section class="card">
 <h2>Tentang Calmionix</h2>
 <p>Owner & Creator dari Server Calmionix SMP</p>
-<p>
-<a class="btn-sosmed" href="https://youtube.com/@calmionix" target="_blank">YouTube</a>
-<a class="btn-sosmed" href="https://www.tiktok.com/@calmionix.id" target="_blank">TikTok</a>
-<a class="btn-sosmed" href="https://linktr.ee/calmionix" target="_blank">Linktree</a>
-<a class="btn-sosmed" href="https://discord.gg/zF8pYxawEq" target="_blank">Discord</a>
-<a class="btn-sosmed" href="https://whatsapp.com/channel/0029VbBX3oH4SpkL6bGQa404" target="_blank">Saluran WA</a>
-</p>
-<p><b>Hubungi Admin:</b></p>
-<a href="https://wa.me/6282130570915?text=Halo Admin Calmionix, saya ingin bertanya seputar server" target="_blank" class="btn-wa">Chat WhatsApp</a>
+<a class="btn-wa" href="https://wa.me/6282130570915?text=Halo Admin Calmionix, saya ingin bertanya seputar server" target="_blank">Chat WhatsApp</a>
 </section>
 
-<section id="server" class="card">
+<section class="card">
 <h2>Fitur Server</h2>
 <div class="feature-grid">
-  <div class="feature-card">Survival</div>
-  <div class="feature-card">Economy</div>
-  <div class="feature-card">Quest</div>
-  <div class="feature-card">Casino</div>
-  <div class="feature-card">Gacha</div>
-  <div class="feature-card">Jobs</div>
-  <div class="feature-card">PVP Area</div>
-  <div class="feature-card">Shop</div>
-  <div class="feature-card">Pasar</div>
+<div class="feature-card">Survival</div>
+<div class="feature-card">Economy</div>
+<div class="feature-card">Quest</div>
+<div class="feature-card">Casino</div>
+<div class="feature-card">Gacha</div>
+<div class="feature-card">Jobs</div>
+<div class="feature-card">PVP</div>
+<div class="feature-card">Shop</div>
+<div class="feature-card">Pasar</div>
 </div>
-<div style="display:flex;align-items:center;justify-content:space-between;margin-top:15px;flex-wrap:wrap;">
-  <p><b>IP Server:</b> play.calmionix.fun</p>
-  <button class="btn" onclick="copyIP()">Copy IP</button>
-  <p><b>Port:</b> 19139</p>
-  <button class="btn" onclick="copyPort()">Copy Port</button>
-</div>
-<p>Support: Java & Bedrock All Version</p>
+<p><b>IP:</b> play.calmionix.fun</p>
+<button class="btn" onclick="copyIP()">Copy IP</button>
+<p><b>Port:</b> 19139</p>
+<button class="btn" onclick="copyPort()">Copy Port</button>
 </section>
 
-<!-- PENGUMUMAN RANK STREAMER -->
-<section id="rank-streamer" class="card">
-  <h2>📢 Pengumuman Server</h2>
-
-  <div class="grid">
-    <div class="card">
-      <h3>Rank Streamer GRATIS</h3>
-
-      <p><b>Syarat:</b></p>
-      <div class="benefit-box">- Live minimal 1x seminggu</div>
-      <div class="benefit-box">- Durasi live minimal 1 jam</div>
-      <div class="benefit-box">- Kirim bukti live ke admin</div>
-
-      <p style="margin-top:12px;">
-        Dapatkan <b>Rank Streamer GRATIS</b> khusus untuk streamer aktif
-      </p>
-
-      <a
-        href="https://wa.me/6282130570915?text=Halo%20Admin%20Calmionix,%20saya%20ingin%20mengajukan%20Rank%20Streamer%20Gratis"
-        target="_blank"
-        class="btn-wa"
-      >
-        Hubungi Admin
-      </a>
-    </div>
-  </div>
-</section>
-<!-- AKHIR PENGUMUMAN RANK STREAMER -->
-
-<!-- PENGUMUMAN VOTE SERVER -->
-<section id="vote-server" class="card">
-  <h2>📢 Vote Server</h2>
-
-  <div class="grid">
-    <div class="card">
-      <h3>🗳️ Vote Server Minecraft</h3>
-
-      <p><b>Keuntungan Vote:</b></p>
-      <div class="benefit-box">- Mendukung server agar makin ramai</div>
-      <div class="benefit-box">- Membantu server naik peringkat</div>
-      <div class="benefit-box">- Biasanya dapat hadiah in-game</div>
-
-      <p style="margin-top:12px;">
-        Klik tombol di bawah untuk melakukan <b>Vote Server Calmionix</b>
-      </p>
-
-      <a
-        href="https://minecraft-mp.com/server/353699/vote/"
-        target="_blank"
-        class="btn-wa"
-      >
-        Vote Sekarang
-      </a>
-    </div>
-  </div>
-</section>
-<!-- AKHIR PENGUMUMAN VOTE SERVER -->
-
-<section id="rank" class="card">
+<section class="card">
 <h2>Rank Store</h2>
 
-<h3 style="margin-top:20px;">🔥 Rank Bulanan (30 Hari)</h3>
 <div class="grid">
-
 <div class="card">
-<h3>VIP — Rp10K / Bulan</h3>
-<div class="benefit-box">Durasi: 30 Hari</div>
+<h3>VIP — Rp10K</h3>
 <div class="benefit-box">/fly</div>
 <div class="benefit-box">/feed</div>
-<div class="benefit-box">/enderchest</div>
-<div class="benefit-box">Prefix VIP</div>
-<button class="btn btn-rank-vip" 
-data-rank="VIP Bulanan — Rp10K" 
-data-benefits="Durasi 30 Hari;/fly;/feed;/enderchest;Prefix VIP"
-onclick="openPay(this)">Beli</button>
+<button class="btn btn-rank-vip" data-rank="VIP Bulanan — Rp10K" data-benefits="/fly;/feed" onclick="openPay(this)">Beli</button>
 </div>
 
 <div class="card">
-<h3>VIP+ — Rp20K / Bulan</h3>
-<div class="benefit-box">Durasi: 30 Hari</div>
+<h3>VIP+ — Rp20K</h3>
 <div class="benefit-box">Semua VIP</div>
-<div class="benefit-box">/kit vip+</div>
 <div class="benefit-box">/repair</div>
-<div class="benefit-box">Prefix VIP+</div>
-<button class="btn btn-rank-vipplus" 
-data-rank="VIP+ Bulanan — Rp20K" 
-data-benefits="Durasi 30 Hari;Semua VIP;/kit vip+;/repair;Prefix VIP+"
-onclick="openPay(this)">Beli</button>
+<button class="btn btn-rank-vipplus" data-rank="VIP+ Bulanan — Rp20K" data-benefits="Semua VIP;/repair" onclick="openPay(this)">Beli</button>
 </div>
 
 <div class="card">
-<h3>MVP — Rp40K / Bulan</h3>
-<div class="benefit-box">Durasi: 30 Hari</div>
-<div class="benefit-box">Semua VIP & VIP+</div>
-<div class="benefit-box">/kit mvp</div>
+<h3>MVP — Rp40K</h3>
+<div class="benefit-box">Semua VIP+</div>
 <div class="benefit-box">/heal</div>
-<div class="benefit-box">Prefix MVP</div>
-<button class="btn btn-rank-mvp" 
-data-rank="MVP Bulanan — Rp40K" 
-data-benefits="Durasi 30 Hari;Semua VIP & VIP+;/kit mvp;/heal;Prefix MVP"
-onclick="openPay(this)">Beli</button>
+<button class="btn btn-rank-mvp" data-rank="MVP Bulanan — Rp40K" data-benefits="Semua VIP+;/heal" onclick="openPay(this)">Beli</button>
 </div>
-
-</div>
-
-<h3 style="margin-top:40px;">👑 Rank Permanen (Sampai Ganti Season)</h3>
-<div class="grid">
-
-<div class="card">
-<h3>VIP Permanen — Rp30K</h3>
-<div class="benefit-box">Berlaku sampai reset season</div>
-<div class="benefit-box">Semua fitur VIP</div>
-<div class="benefit-box">Prioritas antrian</div>
-<div class="benefit-box">Tag eksklusif Permanen</div>
-<button class="btn btn-rank-vip" 
-data-rank="VIP Permanen — Rp30K" 
-data-benefits="Berlaku sampai ganti season;Semua fitur VIP;Prioritas antrian;Tag Permanen"
-onclick="openPay(this)">Beli</button>
-</div>
-
-<div class="card">
-<h3>VIP+ Permanen — Rp45K</h3>
-<div class="benefit-box">Berlaku sampai reset season</div>
-<div class="benefit-box">Semua fitur VIP+</div>
-<div class="benefit-box">Prioritas tinggi</div>
-<div class="benefit-box">Tag eksklusif Permanen</div>
-<button class="btn btn-rank-vipplus" 
-data-rank="VIP+ Permanen — Rp45K" 
-data-benefits="Berlaku sampai ganti season;Semua fitur VIP+;Prioritas tinggi;Tag Permanen"
-onclick="openPay(this)">Beli</button>
-</div>
-
-<div class="card">
-<h3>MVP Permanen — Rp70K</h3>
-<div class="benefit-box">Berlaku sampai reset season</div>
-<div class="benefit-box">Semua fitur MVP</div>
-<div class="benefit-box">Akses fitur eksklusif</div>
-<div class="benefit-box">Rank tertinggi Permanen</div>
-<button class="btn btn-rank-mvp" 
-data-rank="MVP Permanen — Rp70K" 
-data-benefits="Berlaku sampai ganti season;Semua fitur MVP;Akses fitur eksklusif;Rank tertinggi Permanen"
-onclick="openPay(this)">Beli</button>
-</div>
-  
-</div>
-  
-</section>
-
-
-<section id="ratecard" class="card">
-<h2>📌 Rate Card — Calmionix</h2>
-<p>Pilih opsi promosi sesuai kebutuhan kamu. Semua harga <b>sudah termasuk editing & branding</b>.</p>
-
-<div class="grid">
-
-  <!-- TikTok -->
-  <div class="card">
-    <h3>🎥 TikTok Video</h3>
-    <div class="benefit-box">Rp45K — Video tanpa revisi</div>
-    <div class="benefit-box">Rp60K — Video + 1x revisi ringan</div>
-    <div class="benefit-box">Rp80K — Video + 2x revisi / request konsep</div>
-    <p>Upload di akun TikTok <b>Calmionix</b></p>
-    <button class="btn btn-rank-vip"
-      onclick="window.open('https://wa.me/6282130570915?text='+encodeURIComponent('Halo Admin Calmionix, saya ingin order TikTok Video'),'_blank')">
-      Order TikTok
-    </button>
-  </div>
-
-  <!-- YouTube Short -->
-  <div class="card">
-    <h3>🎬 YouTube Short</h3>
-    <div class="benefit-box">Rp30K — Video + 1x revisi</div>
-    <p>Upload di channel <b>YouTube Calmionix</b></p>
-    <button class="btn btn-rank-vipplus"
-      onclick="window.open('https://wa.me/6282130570915?text='+encodeURIComponent('Halo Admin Calmionix, saya ingin order YouTube Short'),'_blank')">
-      Order YouTube
-    </button>
-  </div>
-
-  <!-- Foto / Poster -->
-  <div class="card">
-    <h3>🖼 Foto / Poster</h3>
-    <div class="benefit-box">Rp30K — Upload foto / poster</div>
-    <div class="benefit-box">Rp40K — Foto + desain teks & branding</div>
-    <p>Cocok untuk banner, event, atau promosi singkat</p>
-    <button class="btn btn-rank-mvp"
-      onclick="window.open('https://wa.me/6282130570915?text='+encodeURIComponent('Halo Admin Calmionix, saya ingin order Foto / Poster'),'_blank')">
-      Order Desain
-    </button>
-  </div>
-
-  <!-- Konten Only -->
-  <div class="card">
-    <h3>📂 Konten Only</h3>
-    <div class="benefit-box">Rp40K — Video tanpa revisi</div>
-    <div class="benefit-box">Rp55K — Video + 1x revisi</div>
-    <p>Tidak di-upload, dikirim ke klien</p>
-    <button class="btn btn-rank-custom"
-      onclick="window.open('https://wa.me/6282130570915?text='+encodeURIComponent('Halo Admin Calmionix, saya ingin order Konten Only'),'_blank')">
-      Order Konten
-    </button>
-  </div>
-
-  <!-- WhatsApp -->
-  <div class="card">
-    <h3>📢 Saluran WhatsApp</h3>
-    <div class="benefit-box">Rp25K — 2x upload promosi</div>
-    <p>Dipost di saluran WhatsApp Calmionix</p>
-    <button class="btn btn-rank-vip"
-      onclick="window.open('https://wa.me/6282130570915?text='+encodeURIComponent('Halo Admin Calmionix, saya ingin order promosi WhatsApp'),'_blank')">
-      Order WA
-    </button>
-  </div>
-
-</div>
-
-<!-- Tambahan -->
-<div class="card" style="margin-top:20px;">
-  <h3>➕ Tambahan Layanan</h3>
-  <div class="benefit-box">🚀 Skip antrian: +Rp20K</div>
-  <div class="benefit-box">✏️ Revisi ekstra: +Rp10K / revisi</div>
-  <div class="benefit-box">🔗 Link bio 7 hari: +Rp20K</div>
 </div>
 
 </section>
 
-<section id="payment" class="card">
-<h2>Pembayaran</h2>
-<p>Hubungi admin untuk konfirmasi pembayaran:</p>
-<a href="https://wa.me/6282130570915?text=Halo Admin Calmionix, saya ingin melakukan pembayaran untuk rank" target="_blank" class="btn-wa">Chat WhatsApp</a>
-</section>
+</div>
 </div>
 
+<!-- ================= PAGE 2 ================= -->
+<div id="endorsePage" class="page">
+
+<div class="hero">
+<h1>Rate Card Calmionix</h1>
+<p>Promosi & Endorse Profesional</p>
+</div>
+
+<div class="container">
+
+<section class="card">
+<h2>TikTok</h2>
+<div class="benefit-box">Rp45K — Tanpa revisi</div>
+<div class="benefit-box">Rp60K — 1x revisi</div>
+<button class="btn btn-rank-vip"
+onclick="window.open('https://wa.me/6282130570915?text=Halo Admin Calmionix, saya ingin order TikTok','_blank')">
+Order
+</button>
+</section>
+
+<section class="card">
+<h2>YouTube Short</h2>
+<div class="benefit-box">Rp30K — 1x revisi</div>
+<button class="btn btn-rank-vipplus"
+onclick="window.open('https://wa.me/6282130570915?text=Halo Admin Calmionix, saya ingin order YouTube','_blank')">
+Order
+</button>
+</section>
+
+<section class="card">
+<h2>Foto / Poster</h2>
+<div class="benefit-box">Rp30K — Poster</div>
+<button class="btn btn-rank-mvp"
+onclick="window.open('https://wa.me/6282130570915?text=Halo Admin Calmionix, saya ingin order Poster','_blank')">
+Order
+</button>
+</section>
+
+</div>
+</div>
+
+<!-- MODAL -->
 <div class="modal" id="payModal">
 <div class="modal-content">
 <h3 id="rankName"></h3>
@@ -381,62 +194,65 @@ onclick="openPay(this)">Beli</button>
 </div>
 </div>
 
-<div id="toast">Teks disalin!</div>
+<div id="toast">Disalin!</div>
+
 <footer>© Server Calmionix SMP • All Rights Reserved</footer>
 
 <script>
-// Theme toggle
+function showPage(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+window.scrollTo(0,0);
+}
+
 function toggleTheme(){
-  document.body.classList.toggle("light");
-  localStorage.setItem("theme", document.body.classList.contains("light")?"light":"dark");
+document.body.classList.toggle("light");
+localStorage.setItem("theme",document.body.classList.contains("light")?"light":"dark");
 }
 if(localStorage.getItem("theme")=="light"){document.body.classList.add("light");}
 
-// Animate cards on scroll
-const cards = document.querySelectorAll('.card');
+const cards=document.querySelectorAll('.card');
 function showCards(){
-  cards.forEach(c => {
-    const rect = c.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 50){c.classList.add('show');}
-  });
+cards.forEach(c=>{
+if(c.getBoundingClientRect().top<window.innerHeight-50){c.classList.add('show');}
+});
 }
-window.addEventListener('scroll', showCards);
-window.addEventListener('load', showCards);
+window.addEventListener('scroll',showCards);
+window.addEventListener('load',showCards);
 
-// Scroll progress
 window.addEventListener('scroll',()=>{
-  let scrollTop = window.scrollY;
-  let docHeight = document.body.scrollHeight - window.innerHeight;
-  document.getElementById('progressBar').style.width = (scrollTop/docHeight)*100 + '%';
+let scrollTop=window.scrollY;
+let docHeight=document.body.scrollHeight-window.innerHeight;
+document.getElementById('progressBar').style.width=(scrollTop/docHeight)*100+'%';
 });
 
-// Copy IP/Port
 function showToast(msg){
-  const toast = document.getElementById('toast');
-  toast.innerText=msg;
-  toast.style.opacity=1; toast.style.transform='translateY(0)';
-  setTimeout(()=>{toast.style.opacity=0; toast.style.transform='translateY(-20px)';},2000);
+const toast=document.getElementById('toast');
+toast.innerText=msg;
+toast.style.opacity=1;
+setTimeout(()=>toast.style.opacity=0,2000);
 }
+
 function copyIP(){navigator.clipboard.writeText("play.calmionix.fun");showToast("IP disalin!");}
 function copyPort(){navigator.clipboard.writeText("19139");showToast("Port disalin!");}
 
-// Modal rank
 function openPay(btn){
-  const rank = btn.dataset.rank;
-  const benefits = btn.dataset.benefits.split(';');
-  document.getElementById('rankName').innerText = rank;
-  const benefitContainer = document.getElementById('rankBenefits');
-  benefitContainer.innerHTML='';
-  benefits.forEach(b=>{
-    const div=document.createElement('div');
-    div.className='benefit-box';
-    div.innerText=b;
-    benefitContainer.appendChild(div);
-  });
-  document.getElementById('modalWA').href='https://wa.me/6282130570915?text='+encodeURIComponent('Halo Admin Calmionix, saya ingin membeli '+rank);
-  document.getElementById('payModal').style.display='flex';
+const rank=btn.dataset.rank;
+const benefits=btn.dataset.benefits.split(';');
+document.getElementById('rankName').innerText=rank;
+const container=document.getElementById('rankBenefits');
+container.innerHTML='';
+benefits.forEach(b=>{
+const div=document.createElement('div');
+div.className='benefit-box';
+div.innerText=b;
+container.appendChild(div);
+});
+document.getElementById('modalWA').href='https://wa.me/6282130570915?text='+encodeURIComponent('Halo Admin Calmionix, saya ingin membeli '+rank);
+document.getElementById('payModal').style.display='flex';
 }
 function closePay(){document.getElementById('payModal').style.display='none';}
 </script>
+
 </body>
 </html>
