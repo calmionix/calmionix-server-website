@@ -196,9 +196,74 @@ function createStar(){
 // buat bintang terus menerus
 setInterval(createStar, 200);
 
+#landingChoice{
+  position:fixed;
+  inset:0;
+  background: radial-gradient(circle at center, #0b1c2d 0%, #000 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+  transition: opacity 0.6s ease, visibility 0.6s;
+}
+
+.choice-box{
+  text-align:center;
+  background: rgba(10,20,40,0.9);
+  padding:60px 80px;
+  border-radius:30px;
+  border:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 0 60px rgba(0,150,255,0.3);
+  backdrop-filter:blur(15px);
+  animation: fadeInScale 0.8s ease;
+}
+
+.choice-box h1{
+  margin-bottom:10px;
+}
+
+.choice-buttons{
+  margin-top:30px;
+  display:flex;
+  gap:30px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.choice-btn{
+  padding:18px 40px;
+  font-size:18px;
+  border-radius:16px;
+  background: linear-gradient(135deg,#1e88e5,#1565c0);
+  color:white;
+  font-weight:700;
+  transition:0.3s ease;
+}
+
+.choice-btn:hover{
+  transform: translateY(-5px) scale(1.05);
+  box-shadow:0 0 30px rgba(0,150,255,0.6);
+}
+
+@keyframes fadeInScale{
+  from{opacity:0; transform:scale(0.9);}
+  to{opacity:1; transform:scale(1);}
+}
+
 </style>
 </head>
 <body class="dark">
+<div id="landingChoice">
+  <div class="choice-box">
+    <h1>Selamat Datang</h1>
+    <p>Pilih kategori yang ingin kamu lihat</p>
+
+    <div class="choice-buttons">
+      <button onclick="enterSite('server')" class="choice-btn">List Server</button>
+      <button onclick="enterSite('ratecard')" class="choice-btn">Endorse</button>
+    </div>
+  </div>
+</div>
 <div class="stars">
    <span></span>
 </div>
@@ -561,6 +626,18 @@ function openPay(btn){
   document.getElementById('payModal').style.display='flex';
 }
 function closePay(){document.getElementById('payModal').style.display='none';}
+
+function enterSite(target){
+  const landing = document.getElementById("landingChoice");
+
+  landing.style.opacity = "0";
+  landing.style.visibility = "hidden";
+
+  setTimeout(()=>{
+    document.getElementById(target).scrollIntoView({behavior:"smooth"});
+  },400);
+}
+
 </script>
 </body>
 </html>
