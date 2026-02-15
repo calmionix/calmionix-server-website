@@ -196,15 +196,24 @@ function createStar(){
 // buat bintang terus menerus
 setInterval(createStar, 200);
 
+/* ===== LANDING FULL SCREEN ===== */
 #landingChoice{
   position:fixed;
   inset:0;
+  width:100vw;
+  height:100vh;
   background: radial-gradient(circle at center, #0b1c2d 0%, #000 100%);
   display:flex;
   align-items:center;
   justify-content:center;
-  z-index:2000;
-  transition: opacity 0.6s ease, visibility 0.6s;
+  z-index:9999;
+  overflow:hidden;
+}
+
+/* Lock scroll saat landing aktif */
+body.landing-active{
+  overflow:hidden;
+  height:100vh;
 }
 
 .choice-box{
@@ -253,6 +262,8 @@ setInterval(createStar, 200);
 </style>
 </head>
 <body class="dark">
+<body class="dark landing-active">
+
 <div id="landingChoice">
   <div class="choice-box">
     <h1>Selamat Datang</h1>
@@ -628,15 +639,26 @@ function openPay(btn){
 function closePay(){document.getElementById('payModal').style.display='none';}
 
 function enterSite(target){
-  const landing = document.getElementById("landingChoice");
 
-  landing.style.opacity = "0";
-  landing.style.visibility = "hidden";
+  // Hilangkan landing
+  document.getElementById("landingChoice").style.display = "none";
 
+  // Aktifkan scroll kembali
+  document.body.classList.remove("landing-active");
+
+  // Scroll ke section
   setTimeout(()=>{
-    document.getElementById(target).scrollIntoView({behavior:"smooth"});
-  },400);
+    document.getElementById(target).scrollIntoView({
+      behavior:"smooth"
+    });
+  },100);
 }
+
+// Setiap refresh selalu balik ke atas & aktifkan landing
+window.addEventListener("load", ()=>{
+  window.scrollTo(0,0);
+  document.body.classList.add("landing-active");
+});
 
 </script>
 </body>
