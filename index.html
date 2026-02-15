@@ -138,25 +138,63 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:20px 0;}
   height:100%;
   z-index:-1;
   pointer-events:none;
-  background:radial-gradient(ellipse at bottom, #0b1c2d 0%, #000 100%);
   overflow:hidden;
 }
 
-.stars::before{
-  content:"";
+.star{
   position:absolute;
-  width:200%;
-  height:200%;
-  background-image:radial-gradient(white 1px, transparent 1px);
-  background-size:150px 150px;
-  animation:starMove 250s linear infinite;
-  opacity:0.4;
+  width:2px;
+  height:2px;
+  background:white;
+  border-radius:50%;
+  opacity:0;
+  animation:fall linear forwards;
 }
 
-@keyframes starMove{
-  from{transform:translateY(0);}
-  to{transform:translateY(-1000px);}
+@keyframes fall{
+  0%{
+    transform:translateY(-10px);
+    opacity:0;
+  }
+  10%{
+    opacity:1;
+  }
+  90%{
+    opacity:1;
+  }
+  100%{
+    transform:translateY(100vh);
+    opacity:0;
+  }
 }
+
+const starsContainer = document.querySelector('.stars');
+
+function createStar(){
+  const star = document.createElement('div');
+  star.classList.add('star');
+
+  // posisi acak horizontal
+  star.style.left = Math.random() * 100 + "vw";
+
+  // ukuran acak
+  const size = Math.random() * 3 + 1;
+  star.style.width = size + "px";
+  star.style.height = size + "px";
+
+  // durasi jatuh acak
+  const duration = Math.random() * 5 + 5;
+  star.style.animationDuration = duration + "s";
+
+  starsContainer.appendChild(star);
+
+  setTimeout(()=>{
+    star.remove();
+  }, duration * 1000);
+}
+
+// buat bintang terus menerus
+setInterval(createStar, 200);
 
 </style>
 </head>
