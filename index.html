@@ -88,8 +88,6 @@ nav a,nav button{color:white;background:none;font-size:16px;}
   box-shadow: 0 0 50px rgba(0, 150, 255, 0.4);
 }
 
-
-}
 .card.show{opacity:1;transform: translateY(0);}
 .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:15px;}
 .feature-card{background:var(--feature-card);padding:15px;border-radius:12px;text-align:center;font-weight:600;transition: transform 0.2s, box-shadow 0.2s,color 0.3s;}
@@ -168,34 +166,6 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:20px 0;}
   }
 }
 
-const starsContainer = document.querySelector('.stars');
-
-function createStar(){
-  const star = document.createElement('div');
-  star.classList.add('star');
-
-  // posisi acak horizontal
-  star.style.left = Math.random() * 100 + "vw";
-
-  // ukuran acak
-  const size = Math.random() * 3 + 1;
-  star.style.width = size + "px";
-  star.style.height = size + "px";
-
-  // durasi jatuh acak
-  const duration = Math.random() * 5 + 5;
-  star.style.animationDuration = duration + "s";
-
-  starsContainer.appendChild(star);
-
-  setTimeout(()=>{
-    star.remove();
-  }, duration * 1000);
-}
-
-// buat bintang terus menerus
-setInterval(createStar, 200);
-
 /* ===== LANDING FULL SCREEN ===== */
 #landingChoice{
   position: fixed;
@@ -266,9 +236,39 @@ body.landing-active{
   to{opacity:1; transform:scale(1);}
 }
 
+  /* ===== STAR ANIMATION ===== */
+const starsContainer = document.querySelector('.stars');
+
+function createStar(){
+  const star = document.createElement('div');
+  star.classList.add('star');
+
+  star.style.left = Math.random() * 100 + "vw";
+
+  const size = Math.random() * 3 + 1;
+  star.style.width = size + "px";
+  star.style.height = size + "px";
+
+  const duration = Math.random() * 5 + 5;
+  star.style.animationDuration = duration + "s";
+
+  starsContainer.appendChild(star);
+
+  setTimeout(()=>{
+    star.remove();
+  }, duration * 1000);
+}
+
+setInterval(createStar, 300);
+
+  html, body{
+  margin:0;
+  padding:0;
+  height:100%;
+}
+
 </style>
 </head>
-<body class="dark">
 <body class="dark landing-active">
 
 <div id="landingChoice">
