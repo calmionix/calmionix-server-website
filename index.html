@@ -373,6 +373,21 @@ setInterval(createStar, 300);
 <p>Support: Java & Bedrock All Version</p>
 </section>
 
+<section id="server-status" class="card">
+  <h2>📊 Status Server</h2>
+
+  <h3 id="server-ip">play.calmionix.my.id</h3>
+
+  <h1 id="player-count">Loading...</h1>
+
+  <p>Support: Java & Bedrock All Version</p>
+
+  <div class="card" style="margin-top:20px; padding:20px;">
+    <b>🔥 Welcome</b>
+    <p id="server-motd">Mengambil data server...</p>
+  </div>
+</section>
+
 <!-- PENGUMUMAN RANK STREAMER -->
 <section id="rank-streamer" class="card">
   <h2>📢 Pengumuman Server</h2>
@@ -682,6 +697,40 @@ window.addEventListener("load", ()=>{
   window.scrollTo(0,0);
   document.body.classList.add("landing-active");
 });
+
+// ===== SERVER STATUS API =====
+async function loadServerStatus(){
+  try{
+    const response = await fetch("https://api.mcsrvstat.us/3/play.calmionix.my.id:19139");
+    const data = await response.json();
+
+    if(data.online){
+
+      const online = data.players.online;
+      const max = data.players.max;
+
+      document.getElementById("player-count").innerText = online + " / " + max;
+
+      if(data.motd && data.motd.clean){
+        document.getElementById("server-motd").innerText = data.motd.clean.join(" ");
+      }else{
+        document.getElementById("server-motd").innerText = "Server Online 🔥";
+      }
+
+    }else{
+      document.getElementById("player-count").innerText = "Server Offline ❌";
+      document.getElementById("server-motd").innerText = "Server sedang offline.";
+    }
+
+  }catch(error){
+    document.getElementById("player-count").innerText = "Error mengambil data";
+  }
+}
+
+loadServerStatus();
+
+// Auto refresh tiap 60 detik
+setInterval(loadServerStatus, 60000);
 
 </script>
 </body>
